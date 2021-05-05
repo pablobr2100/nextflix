@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 
 import { FeaturedMovie } from '../components/FeaturedMovie'
 import { MovieRow } from '../components/MovieRow'
+import { Header } from '../components/Header'
+
 import tmdb from '../services/tmdb'
 
 import styles from './home.module.scss'
@@ -10,6 +12,7 @@ import styles from './home.module.scss'
 export default function Home() {
   const [movieList, setMovieList] = useState([])
   const [featuredData, setFeatureData] = useState(null)
+  const [blackHeader, setBlackHeader] = useState(false)
 
   useEffect(() => {
     const loadAll = async () => {
@@ -27,12 +30,30 @@ export default function Home() {
     loadAll()
   }, [])
 
+  useEffect(() => {
+    const scrollListener = () => {
+      if (window.scrollY > 10) {
+        setBlackHeader(true)
+      } else {
+        setBlackHeader(false)
+      }
+    }
+
+    window.addEventListener('scroll', scrollListener)
+
+    return () => {
+      window.removeEventListener('scroll', scrollListener)
+    }
+  }, [])
+
   return (
     <>
       <Head>
         <title>Nextflix</title>
       </Head>
       <main className={styles.homePage}>
+
+        <Header backgroundColor={blackHeader} />
 
         {featuredData &&
           <FeaturedMovie movie={featuredData} />
