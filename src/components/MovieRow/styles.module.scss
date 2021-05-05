@@ -4,6 +4,11 @@
     h2 {
         margin: 0 0 0 30px;
     }
+
+    &:hover .movieRowLeft,
+    &:hover .movieRowRight {
+        opacity: 1;
+    }
 }
 
 .movieRowListArea {
@@ -12,7 +17,7 @@
 }
 
 .movieRowList {
-    width: 99999999px;
+    transition: all ease 0.3s;
 }
 
 .movieRowItem {
@@ -29,4 +34,25 @@
             transform: scale(1);
         }
     }
+}
+
+.movieRowLeft, .movieRowRight {
+    position: absolute;
+    width: 40px;
+    height: 225px;
+    background-color: rgba($color: #000000, $alpha: 0.6);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transition: all ease 0.5s;
+}
+.movieRowLeft {
+    left: 0;
+}
+.movieRowRight {
+    right: 0;
 }

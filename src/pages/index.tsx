@@ -64,6 +64,12 @@ export default function Home() {
             < MovieRow key={key} title={item.title} movies={item.items} />
           ))}
         </section>
+
+        <footer className={styles.footer}>
+          Feito por Pablo Ribeiro<br/>
+          Direitos de imagem para Netflix<br/>
+          Dados pegos do site <a href="https://www.themoviedb.org/">themoviedb.org</a>
+        </footer>
       </main>
     </>
   )
