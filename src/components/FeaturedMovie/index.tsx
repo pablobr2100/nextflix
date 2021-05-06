@@ -24,6 +24,11 @@ export function FeaturedMovie({ movie }: FeaturedProps) {
         genres.push(movie.genres[i].name)
     }
 
+    let description = movie.overview
+    if (description.length > 200) {
+        description = description.substring(0, 200)+'...'
+    }
+
     return (
         <section className={styles.featured} style={{
             backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`
@@ -38,7 +43,7 @@ export function FeaturedMovie({ movie }: FeaturedProps) {
                             {movie.number_of_seasons} temporada{movie.number_of_seasons !== 1 ? 's' : ''}
                         </div>
                     </div>
-                    <div className={styles.featuredDescription}>{movie.overview}</div>
+                    <div className={styles.featuredDescription}>{description}</div>
                     <div className={styles.featuredButtons}>
                         <a href={`/watch/${movie.id}`} className={styles.featuredWatchButton}>► Assistir</a>
                         <a href={`/list/add/${movie.id}`} className={styles.featuredListButton}>

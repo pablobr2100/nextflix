@@ -13,3 +13,9 @@ Após isso é feita a adição do TypeScript e dos pacotes de tipagem do react e
 Neste projeto será utilizada a API de filmes do site [themoviedb.org](https://www.themoviedb.org/documentation/api).
 
 Para a estilização teremos o [Sass](https://sass-lang.com/) com um arquivo global que abrange todo o projeto e arquivos específicos para as páginas e componentes.
+
+## Imagens
+
+![alt text](https://github.com/pablobr2100/nextflix/blob/main/images/Image_1.png)
+![alt text](https://github.com/pablobr2100/nextflix/blob/main/images/Image_2.png)
+![alt text](https://github.com/pablobr2100/nextflix/blob/main/images/Image_3.png)

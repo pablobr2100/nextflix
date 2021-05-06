@@ -66,8 +66,8 @@ export default function Home() {
         </section>
 
         <footer className={styles.footer}>
-          Feito por Pablo Ribeiro<br/>
-          Direitos de imagem para Netflix<br/>
+          Feito por <a href="https://github.com/pablobr2100">Pablo Ribeiro</a> <br/>
+          Direitos de imagem para <a href="https://www.netflix.com/br/">Netflix</a> <br/>
           Dados pegos do site <a href="https://www.themoviedb.org/">themoviedb.org</a>
         </footer>
       </main>
