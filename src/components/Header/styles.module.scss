@@ -18,10 +18,25 @@
 }
 
 .headerLogo {
+    display: flex;
+    justify-content: center;
+
+    div {
     height: 25px;
 
-    img {
-        height: 100%;
+        img {
+            height: 100%;
+        }
+    }
+}
+.headerHome {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+
+    a {
+        font-size: 15px;
+        font-weight: bold;
     }
 }
 

@@ -55,7 +55,7 @@ export default {
             {
                 slug: 'originals',
                 title : "Originais do Netflix",
-                items : await basicFecth(`/discover/tv/?with_network=213&language=pt-BR&api_key=${process.env.NEXT_PUBLIC_API_KEY}`)
+                items : await basicFecth(`/discover/tv/?with_network=213&page=3&language=pt-BR&api_key=${process.env.NEXT_PUBLIC_API_KEY}`)
             },
             {
                 slug: 'trending',
@@ -90,16 +90,16 @@ export default {
             {
                 slug: 'documentary',
                 title : "Documentários",
-                items : await basicFecth(`/discover/movie?with_genres=99&language=pt-BR&api_key=${process.env.NEXT_PUBLIC_API_KEY}`)
+                items : await basicFecth(`/discover/movie?with_genres=99&page=3&language=pt-BR&api_key=${process.env.NEXT_PUBLIC_API_KEY}`)
             },
         ]
      },
 
-     getMovieInfo : async (movieId: number, type: string) =>{
+     getMovieInfo : async (movieId, type: string) =>{
         let info = {};
         if(movieId) {
             switch(type){
-                case 'movei':
+                case 'movie':
                     info = await basicFecth(`/movie/${movieId}?language=pt-BR&api_key=${process.env.NEXT_PUBLIC_API_KEY}`);
                 break;
                  case 'tv':

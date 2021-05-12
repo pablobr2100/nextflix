@@ -16,6 +16,11 @@ Para a estilização teremos o [Sass](https://sass-lang.com/) com um arquivo glo
 
 ## Imagens
 
+Filme em destaque
 ![alt text](https://github.com/pablobr2100/nextflix/blob/main/images/Image_1.png)
-![alt text](https://github.com/pablobr2100/nextflix/blob/main/images/Image_2.png)
+
+Rodapé do site
 ![alt text](https://github.com/pablobr2100/nextflix/blob/main/images/Image_3.png)
+
+Modal
+![alt text](https://github.com/pablobr2100/nextflix/blob/main/images/Image_2.png)

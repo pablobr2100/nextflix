@@ -1,16 +1,20 @@
+import { useRouter } from 'next/router';
+import Link from 'next/link'
+import Modal from 'react-modal'
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined'
+import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined'
+
 import styles from './styles.module.scss'
+import { MovieModal } from '../MovieModal';
+
+Modal.setAppElement("#__next")
 
 type MovieInfo = {
     id: number;
     name: string;
     backdrop_path: string;
-    vote_average: number;
-    first_air_date: string;
     number_of_seasons: number;
     overview: string;
-    genres: {
-        name: string;
-    }
 }
 
 interface FeaturedProps {
@@ -18,15 +22,11 @@ interface FeaturedProps {
 }
 
 export function FeaturedMovie({ movie }: FeaturedProps) {
-    const firstDate = new Date(movie.first_air_date)
-    const genres = []
-    for (const i in movie.genres) {
-        genres.push(movie.genres[i].name)
-    }
+    const router = useRouter()
 
     let description = movie.overview
     if (description.length > 200) {
-        description = description.substring(0, 200)+'...'
+        description = description.substring(0, 200) + '...'
     }
 
     return (
@@ -37,25 +37,68 @@ export function FeaturedMovie({ movie }: FeaturedProps) {
                 <div className={styles.featuredHorizontal}>
                     <div className={styles.featuredName}>{movie.name}</div>
                     <div className={styles.featuredInfo}>
-                        <div className={styles.featuredPoints}>{movie.vote_average} pontos</div>
-                        <div>{firstDate.getFullYear()}</div>
                         <div>
-                            {movie.number_of_seasons} temporada{movie.number_of_seasons !== 1 ? 's' : ''}
+                            Assista agora à temporada {movie.number_of_seasons}
                         </div>
                     </div>
                     <div className={styles.featuredDescription}>{description}</div>
                     <div className={styles.featuredButtons}>
-                        <a href={`/watch/${movie.id}`} className={styles.featuredWatchButton}>► Assistir</a>
-                        <a href={`/list/add/${movie.id}`} className={styles.featuredListButton}>
-                            + Minha Lista
-                        </a>
-                    </div>
-                    <div className={styles.featuredGenres}>
-                        <strong>Gênero: </strong>
-                        {genres.join(', ')}
+                        <Link href={`/movie/${movie.id}`} >
+                            <a className={styles.featuredWatchButton}>► Assistir</a>
+                        </Link>
+                        <Link
+                            href={`/?movieId=${movie.id}`}
+                            as={`/movie/${movie.id}`}
+                        >
+                            <a
+                                className={styles.featuredListButton}
+                            >
+                                <InfoOutlinedIcon style={{ fontSize: 24 }} />
+                                <span>Mais informações</span>
+                            </a>
+                        </Link>
                     </div>
                 </div>
             </div>
+
+            <Modal
+                isOpen={!!router.query.movieId}
+                onRequestClose={() => router.push("/")}
+                className={styles.featuredModal}
+                style={{
+                    overlay: {
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        backgroundColor: 'rgba(0, 0, 0, 0.80)',
+                        zIndex: 9999
+                    },
+                    content: {
+                        position: 'absolute',
+                        backgroundColor: '#141414',
+                        top: '40px',
+                        left: '220px',
+                        right: '220px',
+                        bottom: '0px',
+                        borderRadius: '5px',
+                        overflow: 'auto',
+                        WebkitOverflowScrolling: 'touch',
+                        outline: 'none',
+                        padding: '0px'
+                    }
+                }}
+            >
+                <>
+                    <div className={styles.modalCloseArea}>
+                        <a className={styles.modalCloseButtom} onClick={() => router.push("/")}>
+                            <CloseOutlinedIcon style={{ fontSize: 25 }} />
+                        </a>
+                    </div>
+                    <MovieModal movieId={movie.id} />
+                </>
+            </Modal>
 
         </section>
     )
